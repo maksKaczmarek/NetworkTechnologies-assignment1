@@ -1,0 +1,716 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Aptos;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:8.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	font-size:12.0pt;
+	font-family:"Aptos",sans-serif;}
+.MsoChpDefault
+	{font-size:12.0pt;
+	font-family:"Aptos",sans-serif;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-GB style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><span
+style='font-size:20.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=15 height=0></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=960 height=2639
+  src="NT-assignment1-website-final-version_files/image001.jpg"></td>
+ </tr>
+</table>
+
+<br clear=ALL>
+</p>
+
+<p class=MsoNormal><b><span style='font-size:20.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:20.0pt;line-height:115%'>2.Practical
+Part</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>Protocols
+Involved in Network Connectivity Verification (Task 2.1)</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>I.
+Introduction</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>The goal of
+this task was to verify the connectivity to google.com and use Wireshark
+identify all protocols which were involved in this communication.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>II.Execution
+proof and Command documentation</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'><img
+width=914 height=665
+src="NT-assignment1-website-final-version_files/image002.png"
+alt="Obraz zawieraj&#261;cy tekst, zrzut ekranu, Czcionka, numer&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 1</span></i></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>I executed
+the command ping -n 5 google.com. This command sends 5 packets to the Google
+server, checks if they are reachable, and measures the time it takes for the
+packet to return.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>The command
+successfully sent 5 packets and received 4 replies, resulting in 1 packet loss
+(20% loss). The output (Image 1) notes one request &quot;Request timed
+out,&quot; which confirms the Network Layer (L3) successfully routed the ICMP
+messages and measured the latency, despite the loss.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>III.
+Protocol dissection and ISO/OSI analysis</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>Step 1:
+Name resolution</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L7
+Application Layer: Domain Name Resolution (DNS):</span></b><span
+style='font-size:16.0pt;line-height:115%'> Before pinging the computer has to
+first convert google.com into IP address like 216.58.209.14 using DNS.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L4
+Transport Layer: User Datagram Protocol (UDP): </span></b><span
+style='font-size:16.0pt;line-height:115%'>To find out the IP address of
+google.com the computer sends DNS query to DNS server via UDP on port 53. UDP
+is chosen because it is connectionless, prioritizing speed over reliability,
+which is essential for fast, low-latency lookups</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'><img
+width=1163 height=634
+src="NT-assignment1-website-final-version_files/image003.png"
+alt="Obraz zawieraj&#261;cy tekst, zrzut ekranu, oprogramowanie, Strona internetowa&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 2</span></i></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>Step 2:
+The diagnostic ping</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>Once when
+the IP address is known, the system sends the core diagnostic message. This
+activity is handled by Network Layer protocols.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L3
+Network Layer: Internet Control Message Protocol (ICMP): </span></b><span
+style='font-size:16.0pt;line-height:115%'>ping sends ICMP echo request packets
+directly to the IP address acquired in the last step.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'><img
+width=897 height=479
+src="NT-assignment1-website-final-version_files/image004.png"
+alt="Obraz zawieraj&#261;cy tekst, elektronika, zrzut ekranu, wy&#347;wietlacz&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 3</span></i></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>The Image 3
+shows expanded <b>ICMP Echo Request</b>. The header shows that message <b>type
+is 8</b> and <b>Code is 0. </b>It confirms that it’s echo request.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'><img
+width=913 height=438
+src="NT-assignment1-website-final-version_files/image005.png"
+alt="Obraz zawieraj&#261;cy tekst, zrzut ekranu, numer, oprogramowanie&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 4</span></i></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>The Image 4
+shows corresponding <b>ICMP Echo reply</b>. The message <b>type is 0</b> and <b>code
+is 0. </b>It confirms the echo reply and proves that target host (google.com)
+is reachable and successfully responded, therefore verifying connectivity.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>From Image 3
+and Image 4 we can see that there is no TCP or UDP header above ICMP layer. It
+proves that ICMP bypasses the <b>Transport Layer (L4)</b> and operates
+exclusively at <b>Network Layer (L3)</b>, because it doesn’t rely on any port
+numbers.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>Step 3:
+Network Foundation</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>The ICMP
+packet must be framed and routed by lower layers</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'><img
+width=964 height=542
+src="NT-assignment1-website-final-version_files/image006.png"
+alt="Obraz zawieraj&#261;cy tekst, zrzut ekranu, oprogramowanie, wy&#347;wietlacz&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></b></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 5</span></i></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L3
+Network Layer</span></b><span style='font-size:16.0pt;line-height:115%'>: Image
+5 shows expanded Internet Protocol Version 4 (IPV4) header encapsulating the
+ICMP message. The information about <b>Source address</b> (192.168.18.41) and <b>Destination
+address</b> (216.58.209.14) confirms that Network Layer is responsible for
+logical addressing and routing.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L2 Data
+link layer: </span></b><span style='font-size:16.0pt;line-height:115%'>Image 5
+shows header of Ethernet II, where we can see <b>Source MAC Address </b>(Intel…)
+and <b>Destination MAC Address </b>(HuaweiTechno…). It proves that Data Link
+layer(including the&nbsp;<b>ARP</b>&nbsp;protocol) <b>handles physical
+addressing and framing</b> of the packet.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'><img
+width=953 height=520
+src="NT-assignment1-website-final-version_files/image007.png"
+alt="Obraz zawieraj&#261;cy tekst, zrzut ekranu, wy&#347;wietlacz, oprogramowanie&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 6</span></i></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L1
+Physical layer</span></b><span style='font-size:16.0pt;line-height:115%'>:
+Image 6 shows expanded <b>Frame</b> header which includes information such as <b>encapsulation
+type</b>: Ethernet (1), <b>frame length</b>: 74 bytes (592 bits) or unique <b>interface
+ID. </b>These details confirm conversion from digital data to electric signals
+proving successful operation on Physical layer.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>Protocols
+Involved in Secure File Transfer (Task 2.2)</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>I.
+Introduction</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>The
+objective of this task was to securely upload an image file to the remote
+server studife.it.p.lodz.pl and analyze the communication. The file transfer
+was executed using the graphical client <b>FileZilla</b>, which relies on the <b>SFTP
+(SSH File Transfer Protocol)</b>, operating over the <b>SSH (Secure Shell)</b>
+tunnel. The analysis identifies protocols across all layers (L7 down to L1),
+with a heavy focus on the security mechanisms in Layers 5 and 6.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>II.
+Execution Proof and Command Documentation</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>The secure
+transfer was executed using the FileZilla client, configured for the standard
+on-campus port (22).</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>Step 1:
+Wireshark Capture Setup</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>The packet
+capture was isolated specifically to the host and port required for the
+connection.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'><img
+width=925 height=475 id="Obraz 7"
+src="NT-assignment1-website-final-version_files/image008.png"
+alt="Obraz zawieraj&#261;cy tekst, zrzut ekranu, wy&#347;wietlacz, oprogramowanie&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 7</span></i></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>The  Image 7
+shows that <b>Capture Filter</b> was set to host studife.it.p.lodz.pl and port
+22. This confirms Wireshark was correctly configured to filter traffic destined
+for the server on the <b>standard SSH port (22).</b></span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>Step 2 :
+File Transfer Execution</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>The secure
+connection was established, and the file was successfully transferred.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'><img
+width=937 height=710
+src="NT-assignment1-website-final-version_files/image009.png"
+alt="Obraz zawieraj&#261;cy tekst, zrzut ekranu, numer, oprogramowanie&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 8</span></i></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></i></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L7
+Application Layer: SSH File Transfer Protocol (SFTP):</span></b><span
+style='font-size:16.0pt;line-height:115%'> The Status Log shows &quot;File
+transfer successful,&quot; confirming successful execution of the SFTP
+Application Layer (L7) function. The connection details confirm the use of user
+ife25_32 and Port 22.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>III.
+Protocol Dissection and ISO/OSI Analysis</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>Step 1:
+Connection Initiation (L4 Transport)</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>The
+communication begins by establishing a reliable connection channel.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'><img
+width=901 height=507
+src="NT-assignment1-website-final-version_files/image010.png"
+alt="Obraz zawieraj&#261;cy tekst, zrzut ekranu, oprogramowanie, Ikona komputerowa&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 9</span></i></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></i></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L4
+Transport Layer: Transmission Control Protocol (TCP):</span></b><span
+style='font-size:16.0pt;line-height:115%'> The transfer relies on the <b>TCP
+three-way handshake</b> (SYN, SYN-ACK, ACK). This ensures that all parts of the
+file are sent and received in the correct order without loss.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>In <b>Image
+9</b>, the first packet shows a <b>TCP SYN request</b> to <b>Destination Port
+22</b>, confirming the start of the handshake and proving that the Transport
+Layer provides reliable and secure data delivery.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>Step 2:
+Security Establishment</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>After the
+reliable TCP connection is created, the <b>SSH protocol</b> takes over to
+provide secure communication, working across the <b>Session (L5)</b> and <b>Presentation
+(L6)</b> layers.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'><img
+width=877 height=681 id="Obraz 10"
+src="NT-assignment1-website-final-version_files/image011.png"
+alt="Obraz zawieraj&#261;cy tekst, elektronika, zrzut ekranu, oprogramowanie&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 10</span></i></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L6
+Presentation Layer:</span></b><span style='font-size:16.0pt;line-height:115%'>
+In Image 10, packets labeled <i>“Encrypted packet (len=16452)”</i> confirm that
+the Presentation Layer applied encryption through key exchange and cipher
+negotiation. This ensures that the transmitted data remains confidential and
+protected.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L5
+Session Layer:</span></b><span style='font-size:16.0pt;line-height:115%'> The <b>SSH
+protocol</b> manages user authentication, session setup, and communication
+channels, maintaining a stable and continuous connection. This demonstrates the
+Session Layer’s role in managing and controlling the ongoing secure session.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L7
+Application Layer: SFTP/SCP:</span></b><span style='font-size:16.0pt;
+line-height:115%'> At the Application Layer, <b>SFTP</b> (or <b>SCP</b>) is
+responsible for the actual file transfer process. In Image 10, the large,
+encrypted data segments represent the file data being transmitted, confirming
+that this layer handles the user-level transfer operations. <b>SFTP</b> manages
+commands such as copying files and accessing directories, while relying on the
+secure tunnel created by the <b>SSH protocol</b> at the Session (L5) and
+Presentation (L6) layers.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>Step 3:
+Network Foundation</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>Once the
+secure connection is established, the packets must be properly framed and
+routed.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L3
+Network Layer: Internet Protocol Version 4 (IPv4)</span></b><span
+style='font-size:16.0pt;line-height:115%'>: <b>Images 9 and 10</b> display the
+expanded <b>Internet Protocol Version 4 (IPv4)</b> header. The presence of the <b>Source
+Address</b> (10.128.102.192) and <b>Destination Address</b> (212.51.220.81)
+confirms that the Network Layer manages <b>logical addressing and routing</b>,
+ensuring the secure packets reach their intended destination across multiple
+networks.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L2 Data
+link layer:</span></b><span style='font-size:16.0pt;line-height:115%'> Image 9
+shows the <b>Ethernet II header</b>, which provides <b>local physical
+addressing</b> using MAC addresses. The inclusion of the <b>Address Resolution
+Protocol (ARP)</b> at this layer is essential, as it resolves the <b>Destination
+MAC Address</b> before transmission, allowing successful delivery of the packet
+within the local network segment.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L1
+Physical layer:</span></b><span style='font-size:16.0pt;line-height:115%'> The <b>Frame
+header</b> visible in <b>Images 3 and 4</b> demonstrates the conversion of
+digital data into a <b>raw bitstream</b> that travels through the physical
+network medium (such as Ethernet cables). This confirms that the Physical Layer
+is responsible for the actual transmission of the secure packets across the
+hardware medium.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>Protocols
+Involved in Webpage Access (Task 2.3)</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>I.
+Introduction</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>The
+objective of this task was to access the webpage it.p.lodz.pl and analyze all
+protocols involved. Although web access often begins with HTTP, the analysis
+confirms this institutional site uses <b>HTTPS (HTTP over TLS)</b>, making the
+focus the identification and classification of the security layers (TLS/SSL)
+alongside the application and transport protocols.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>II.
+Execution Proof and Command Documentation</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>The
+execution involved clearing local DNS and browser caches, followed by accessing
+the target URL in a web browser to ensure a clean capture of the full security
+establishment process.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>Step 1:
+Initial Protocol Activity: Name Resolution</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>The
+communication chain must begin by translating the hostname to an IP address.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L7
+Application Layer: Domain Name Resolution (DNS):</span></b><span
+style='font-size:16.0pt;line-height:115%'> The computer first converts
+it.p.lodz.pl into an IP address.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'><img
+width=962 height=493
+src="NT-assignment1-website-final-version_files/image012.png"
+alt="Obraz zawieraj&#261;cy tekst, zrzut ekranu, Czcionka, numer&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></b></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 11</span></i></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></i></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>Image 11</span></b><span
+style='font-size:16.0pt;line-height:115%'> shows that DNS Queries are sent to
+find the address.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L4
+Transport Layer: User Datagram Protocol (UDP):</span></b><span
+style='font-size:16.0pt;line-height:115%'> The DNS query is sent via <b>UDP</b>
+on Port 53. UDP is chosen because it is connectionless, prioritizing speed for
+fast lookups.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>III.
+Protocol Dissection and ISO/OSI Analysis</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>Step 1:
+Security Establishment</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>Once the IP
+address is known, the browser initiates the secure connection stream, engaging
+the security layers.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'><img
+width=921 height=545 id="Obraz 6"
+src="NT-assignment1-website-final-version_files/image013.png"
+alt="Obraz zawieraj&#261;cy tekst, zrzut ekranu, Czcionka, numer&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 12</span></i></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L4
+Transport Layer: Transmission Control Protocol (TCP):</span></b><span
+style='font-size:16.0pt;line-height:115%'> The connection is established via
+the <b>TCP three-way handshake</b> (visible in Image 12), ensuring a reliable,
+ordered stream of data over <b>Port 443</b> (the standard HTTPS port).</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L6
+Presentation Layer &amp; L5 Session Layer: TLS/SSL:</span></b><span
+style='font-size:16.0pt;line-height:115%'> The <b>Transport Layer Security
+(TLS)</b> protocol immediately takes over to provide the necessary security.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'><img
+width=956 height=506 id="Obraz 8"
+src="NT-assignment1-website-final-version_files/image014.png"
+alt="Obraz zawieraj&#261;cy tekst, zrzut ekranu, numer, Czcionka&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 13</span></i></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'><img
+width=963 height=812 id="Obraz 9"
+src="NT-assignment1-website-final-version_files/image015.png"
+alt="Obraz zawieraj&#261;cy tekst, elektronika, zrzut ekranu, numer&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 14</span></i></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L6
+(Presentation Layer) Proof:</span></b><span style='font-size:16.0pt;line-height:
+115%'> <b>Image 14</b> shows the expanded <b>TLSv1.2 Server Hello</b>. This
+process (the <b>TLS Handshake</b>) proves the <b>Presentation Layer</b>
+successfully negotiated and established the encryption keys, fulfilling its
+duty of providing data <b>confidentiality</b>.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L5
+(Session Layer) Proof:</span></b><span style='font-size:16.0pt;line-height:
+115%'> In <b>Image 13</b> we can see that the TLS protocol manages the
+authentication (via certificates) and maintains the secure communication
+channel, fulfilling the <b>Session Layer</b> role of managing the connection
+state.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'><img
+width=937 height=638 id="Obraz 11"
+src="NT-assignment1-website-final-version_files/image016.png"
+alt="Obraz zawieraj&#261;cy tekst, elektronika, zrzut ekranu, oprogramowanie&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 15</span></i></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L7
+Application Layer: HTTP(Encapsulated):</span></b><span style='font-size:16.0pt;
+line-height:115%'> The core protocol is <b>Hypertext Transfer Protocol (HTTP)</b>.
+<b>Image</b> shows the TLS Record Layer explicitly carrying the <b>&quot;Application
+Data Protocol: Hypertext Transfer Protocol.&quot;</b> This confirms that <b>HTTP
+manages the delivery of the webpage content and data</b>, relying entirely on
+the <b>TLS tunnel</b> established at L5/L6 to provide the required security.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>Step 2:
+Network Foundation</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>The secure
+packets must be framed and routed across the local campus network and the
+internet.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'><img
+width=894 height=777 id="Obraz 12"
+src="NT-assignment1-website-final-version_files/image017.png"
+alt="Obraz zawieraj&#261;cy tekst, elektronika, zrzut ekranu, oprogramowanie&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 16</span></i></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L3
+Network Layer: Internet Protocol Version 4 (IPv4):</span></b><span
+style='font-size:16.0pt;line-height:115%'> Image 16 shows the expanded <b>Internet
+Protocol Version 4</b> header. The presence of <b>Source Address</b>
+(34.168.144.191) and <b>Destination Address</b> (10.128.102.192) confirms that
+the <b>Network Layer</b> handles logical addressing and routing the secure
+packets to their destination.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'><img
+width=941 height=646 id="Obraz 13"
+src="NT-assignment1-website-final-version_files/image018.png"
+alt="Obraz zawieraj&#261;cy tekst, elektronika, zrzut ekranu, oprogramowanie&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 17</span></i></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L2 Data
+link layer:</span></b><span style='font-size:16.0pt;line-height:115%'> Image<b>
+</b>17 shows the header of <b>Ethernet II</b>. This proves the <b>Data Link
+Layer</b> handles local physical addressing. The <b>Address Resolution Protocol
+(ARP)</b> is included as a Layer 2 protocol, as it is responsible for resolving
+the Destination MAC Address shown in the header, which is a mandatory step for
+local physical delivery.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L1
+Physical layer:</span></b><span style='font-size:16.0pt;line-height:115%'> The <b>Frame</b>
+header (visible in Image 17) confirms the conversion of the digital data into
+the raw bit stream transmitted across the physical network medium.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>Protocols
+Involved in Webpage Access (Task 2.4)</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>I.
+Introduction</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>The
+objective of this task was to access the institutional webpage
+studife.it.p.lodz.pl and analyze all protocols involved. The analysis confirms
+this server handles requests via <b>HTTP (Port 80)</b>, which lacks security.
+The focus of the report is to identify and classify the entire protocol stack
+(L7 down to L1) and provide empirical proof of the <b>vulnerability</b>
+resulting from the omission of the security layer.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>II.
+Execution Proof and Command Documentation</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>The
+execution involved clearing local DNS and browser caches, followed by accessing
+the target URL in a web browser to ensure a clean capture of the full
+communication.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>Step 1:
+Initial Protocol Activity: Name Resolution</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>The
+communication chain must begin by translating the hostname to an IP address.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'><img
+width=937 height=553 id="Obraz 18"
+src="NT-assignment1-website-final-version_files/image019.png"
+alt="Obraz zawieraj&#261;cy tekst, zrzut ekranu, oprogramowanie, numer&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 18</span></i></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L7
+Application Layer: Domain Name Resolution (DNS):</span></b><span
+style='font-size:16.0pt;line-height:115%'> The computer first converts
+studife.it.p.lodz.pl into an IP address. <b>Image 18 </b>confirms that the DNS
+Query was sent and the Response returned the IP address <b>212.51.220.81</b>
+for the server.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'><img
+width=872 height=447 id="Obraz 2"
+src="NT-assignment1-website-final-version_files/image020.png"
+alt="Obraz zawieraj&#261;cy tekst, zrzut ekranu, wy&#347;wietlacz, oprogramowanie&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 19</span></i></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L4
+Transport Layer: User Datagram Protocol (UDP):</span></b><span
+style='font-size:16.0pt;line-height:115%'> The DNS query is sent via <b>UDP</b>
+on Port 53 (visible in Image 19). UDP is chosen because it is connectionless,
+prioritizing speed for fast lookups.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>III.
+Protocol Dissection and ISO/OSI Analysis</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>Step 1:
+Web Access and Vulnerability (L7 Core)</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>Once the IP
+address is known, the browser establishes the content delivery stream using the
+unsecured protocol.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'><img
+width=945 height=554 id="Obraz 3"
+src="NT-assignment1-website-final-version_files/image021.png"
+alt="Obraz zawieraj&#261;cy tekst, zrzut ekranu, Czcionka, numer&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 20</span></i></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L4
+Transport Layer: Transmission Control Protocol (TCP):</span></b><span
+style='font-size:16.0pt;line-height:115%'> The connection is established via
+the <b>TCP three-way handshake</b> (visible in Image 20), ensuring a reliable,
+ordered stream of data over the standard <b>Port 80</b> (the unsecured HTTP
+port).</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'><img
+width=947 height=679 id="Obraz 4"
+src="NT-assignment1-website-final-version_files/image022.png"
+alt="Obraz zawieraj&#261;cy tekst, zrzut ekranu, oprogramowanie, numer&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 21</span></i></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'><img
+width=952 height=439 id="Obraz 5"
+src="NT-assignment1-website-final-version_files/image023.png"
+alt="Obraz zawieraj&#261;cy tekst, zrzut ekranu, oprogramowanie, Strona internetowa&#10;&#10;Zawarto&#347;&#263; wygenerowana przez AI mo&#380;e by&#263; niepoprawna."></span></i></p>
+
+<p class=MsoNormal><i><span style='font-size:16.0pt;line-height:115%'>Image 22</span></i></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L7
+Application Layer: HTTP (Unsecured):</span></b><span style='font-size:16.0pt;
+line-height:115%'> The core protocol is <b>Hypertext Transfer Protocol (HTTP)</b>.
+This protocol manages the content requests and data delivery. <b>Image 21</b>
+and <b>Image 22</b> show the expanded HTTP response packet, specifically the <b>Line-based
+text data</b> (HTML source code) section.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L6
+Bypass: </span></b><span style='font-size:16.0pt;line-height:115%'>The fact
+that the entire HTML source code is displayed <b>in cleartext</b> (readable)
+proves the <b>Presentation Layer (L6)</b> was <b>omitted/bypassed</b>. This
+omission confirms the data is vulnerable and lacks confidentiality.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>Step 2:
+Network Foundation</span></b></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>The HTTP
+packet must be framed and routed by the physical infrastructure protocols.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L3
+Network Layer: Internet Protocol Version 4 (IPv4):</span></b><span
+style='font-size:16.0pt;line-height:115%'> <b>Image 22</b> shows the <b>Internet
+Protocol Version 4</b> header. The presence of <b>Source Address</b>
+(34.107.221.82) and <b>Destination Address</b> (10.128.102.192) confirms that
+the <b>Network Layer</b> handles logical addressing and routing the packet.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L2 Data
+link layer:</span></b><span style='font-size:16.0pt;line-height:115%'> <b>Image
+22</b> shows the header of <b>Ethernet II</b>. This proves the <b>Data Link
+Layer</b> handles local physical addressing. The <b>Address Resolution Protocol
+(ARP)</b> is included as a Layer 2 protocol, as it is responsible for resolving
+the Destination MAC Address shown in the header, which is a mandatory step for
+local physical delivery.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'><img
+width=903 height=629 id="Obraz 1"
+src="NT-assignment1-website-final-version_files/image024.png"></span><span
+style='font-size:16.0pt;line-height:115%'><br>
+<i>Image 23</i></span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>The <b>Address
+Resolution Protocol (ARP)</b> is empirically demonstrated in <b>Image 23</b>.
+This protocol operates exclusively at <b>Layer 2</b> to resolve the IP address
+of the local gateway (router) into the physical MAC Address, which is the
+necessary step taken before the Ethernet II header (L2 frame) can be
+constructed for the HTTP packet.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt;line-height:115%'>L1
+Physical layer:</span></b><span style='font-size:16.0pt;line-height:115%'> The <b>Frame</b>
+header (visible in Image 4) confirms the transmission of the raw bit stream
+across the physical medium.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>
